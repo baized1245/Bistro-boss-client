@@ -13,17 +13,17 @@ import MenuCategory from '../MenuCategory/MenuCategory';
 
 const Menu = () => {
     const [ menu ] = useMenu();
+    const pizza = menu.filter(item => item.category === 'pizza');
     const dessert = menu.filter(item => item.category === 'dessert');
     const soup = menu.filter(item => item.category === 'soup');
     const salad = menu.filter(item => item.category === 'salad');
-    const pizza = menu.filter(item => item.category === 'pizza');
     const offered = menu.filter(item => item.category === 'offered');
     return (
         <div>
             <Helmet>
                 <title>Bistro Boss | Menu</title>
             </Helmet>
-            <Cover img={menuImg} title={"Our Menu"}></Cover>
+            <Cover img={menuImg} title="Our Menu"></Cover>
             {/* Main cover */}
             <SectionTitle subHeading="Don't Miss" heading="Today's Offer"></SectionTitle>
             {/* Offered menu items */}
@@ -32,25 +32,25 @@ const Menu = () => {
 
             <MenuCategory
             items={pizza}
-            title="Pizza"
+            title="pizza"
             img={pizzaImg}
             ></MenuCategory>
 
             <MenuCategory
             items={dessert}
-            title="Dessert"
+            title="dessert"
             img={dessertImg}
             ></MenuCategory>
 
             <MenuCategory
             items={soup}
-            title="Soup"
+            title="soup"
             img={soupImg}
             ></MenuCategory>
 
             <MenuCategory
             items={salad}
-            title="Salad"
+            title="salad"
             img={saladImg}
             ></MenuCategory>
 
