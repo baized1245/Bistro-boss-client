@@ -6,12 +6,14 @@ import 'react-tabs/style/react-tabs.css';
 import useMenu from '../../../Hooks/UseMenu';
 import OrderTab from '../OrderTab/OrderTab';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const Order = () => {
-    const [ tabIndex, setTabIndex ] = useState(0);
-    const [ menu ] = useMenu();
+    const categories = [ 'salad', 'pizza', 'soup', 'dessert',  'drinks' ];
     const {category}  = useParams();
-    console.log(category);
+     const initialIndex = categories.indexOf(category);
+    const [ tabIndex, setTabIndex ] = useState(initialIndex);
+    const [ menu ] = useMenu();
 
     const dessert = menu.filter(item => item.category === 'dessert');
     const soup = menu.filter(item => item.category === 'soup');
@@ -21,6 +23,9 @@ const Order = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Bistro Boss | Order Food</title>
+            </Helmet>
             <Cover img={orderCoverImg} title="Order Food"></Cover>
             <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
