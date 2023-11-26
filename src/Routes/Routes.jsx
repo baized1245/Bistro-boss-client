@@ -8,6 +8,8 @@ import Menu from "../Payges/Menu/Menu/Menu";
 import Order from "../Payges/Order/Order/Order";
 import Login from "../Payges/Login/Login";
 import SignUp from "../Payges/SignUp/SignUp";
+import Secret from "../Payges/Shared/Secret/Secret";
+import PrivateRoute from "./PrivateRoute";
 
   export const router = createBrowserRouter([
     {
@@ -33,6 +35,10 @@ import SignUp from "../Payges/SignUp/SignUp";
             {
               path: 'signup',
               element: <SignUp></SignUp>
+            },
+            {
+              path: 'secret',
+              element: <PrivateRoute><Secret></Secret></PrivateRoute>
             }
         ]
     },
