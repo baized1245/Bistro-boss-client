@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import { Helmet } from 'react-helmet';   
 import { AuthContext } from '../../Providers/AuthProviders';
+import Swal from 'sweetalert2';
   
 
 const SignUp = () => {
-    const { register, handleSubmit, watch, formState: { errors },} = useForm();
-    const { creatUser } = useContext(AuthContext);
+    const { register, handleSubmit, reset, formState: { errors },} = useForm();
+    const { creatUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const onSubmit = (data) =>{ 
         console.log(data)
@@ -15,10 +17,32 @@ const SignUp = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            updateUserProfile(data.name, data.photoURL)
+            .then(() => {
+                  console.log("user profile updated");
+                  reset();
+                  Swal.fire({
+                    title: "User Created Successfully",
+                    showClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                    },
+                    hideClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                    }
+                  });
+                  navigate('/');
+            })
+            .catch(error => console.log(error))
         })
     };
-
-    // console.log(watch("name"))
 
     return (
 
@@ -40,6 +64,12 @@ const SignUp = () => {
             <span className="label-text">Name</span>
           </label>
           <input type="text" {...register("name")} name='name' placeholder="Name" className="input input-bordered" required />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Photo URL</span>
+          </label>
+          <input type="text" {...register("photoURL")} placeholder="Photo URL" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
