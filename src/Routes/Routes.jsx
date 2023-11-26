@@ -6,6 +6,7 @@ import Main from "../Layout/Main";
 import Home from "../Payges/Home/Home/Home";
 import Menu from "../Payges/Menu/Menu/Menu";
 import Order from "../Payges/Order/Order/Order";
+import Login from "../Payges/Login/Login";
 
   export const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ import Order from "../Payges/Order/Order/Order";
             {
               path: 'order/:category',
               element: <Order></Order>
+            },
+            {
+              path: 'login',
+              element: <Login></Login>
             }
         ]
     },
