@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';    
+import { Link } from 'react-router-dom'; 
+import { Helmet } from 'react-helmet';   
+import { AuthContext } from '../../Providers/AuthProviders';
   
 
 const SignUp = () => {
-    const { register, handleSubmit, watch, formState: { errors },} = useForm()
+    const { register, handleSubmit, watch, formState: { errors },} = useForm();
+    const { creatUser } = useContext(AuthContext);
 
     const onSubmit = (data) =>{ 
         console.log(data)
+        creatUser(data.email, data.password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
     };
 
     // console.log(watch("name"))
 
     return (
-        <div className="hero min-h-screen bg-base-200">
+
+        <>
+           <Helmet>
+                <title>Bistro Boss | Sign Up</title>
+            </Helmet>
+
+            <div className="hero min-h-screen bg-base-200">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
       <h1 className="text-5xl font-bold">Sign Up now!</h1>
@@ -50,7 +64,10 @@ const SignUp = () => {
     </div>
   </div>
 </div>
+        </>
+        
     );
 };
 
 export default SignUp;
+
