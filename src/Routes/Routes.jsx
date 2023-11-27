@@ -10,6 +10,8 @@ import Login from "../Payges/Login/Login";
 import SignUp from "../Payges/SignUp/SignUp";
 import Secret from "../Payges/Shared/Secret/Secret";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Layout/Dashboard";
+import MyCart from "../Payges/Dashboard/MyCart/MyCart";
 
   export const router = createBrowserRouter([
     {
@@ -42,4 +44,14 @@ import PrivateRoute from "./PrivateRoute";
             }
         ]
     },
+    {
+      path: 'dashboard',
+      element: <Dashboard></Dashboard>,
+      children: [
+        {
+          path: 'mycart',
+          element: <MyCart></MyCart>
+        }   
+      ]
+    }
   ])
