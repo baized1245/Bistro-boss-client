@@ -12,6 +12,7 @@ import Secret from "../Payges/Shared/Secret/Secret";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import MyCart from "../Payges/Dashboard/MyCart/MyCart";
+import AllUsers from "../Payges/Dashboard/AllUsers/AllUsers";
 
   export const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ import MyCart from "../Payges/Dashboard/MyCart/MyCart";
         {
           path: 'mycart',
           element: <MyCart></MyCart>
+        },
+        {
+          path: 'allusers',
+          element: <AllUsers></AllUsers>
         }   
       ]
     }
